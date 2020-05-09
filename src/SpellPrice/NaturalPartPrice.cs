@@ -20,15 +20,15 @@ namespace SpellPrice
             var naturalPartPrice = price.GetIntegerPart();
             var naturalPartPriceToWords = naturalPartPrice.ToWords(cultureInfo);
 
-            var currencyName = GetCurrencyName(price, regionInfo);
+            var currencyName = GetCurrencyName(naturalPartPrice, regionInfo);
 
             return $"{naturalPartPriceToWords} {currencyName}";
         }
 
-        private static string GetCurrencyName(decimal price, RegionInfo regionInfo)
+        private static string GetCurrencyName(int naturalPartPrice, RegionInfo regionInfo)
         {
             var currencyName = regionInfo.CurrencyNativeName;
-            if (price > 1m)
+            if (naturalPartPrice > 1.0m)
             {
                 currencyName = currencyName.Pluralize();
             }
