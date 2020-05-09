@@ -1,17 +1,24 @@
+using Humanizer;
 using System;
 using System.Globalization;
-using Humanizer;
 
 namespace SpellPrice
 {
     public static class PriceExtensions
     {
-        public static string PriceToWords(this decimal price)
+        public static string PriceToWords(this decimal price, CultureInfo cultureInfo)
         {
-            var currencyName = new RegionInfo("US").CurrencyNativeName;
+            if (cultureInfo == null)
+            {
+                throw new ArgumentNullException(nameof(cultureInfo));
+            }
+
+            var regionInfo = new RegionInfo(cultureInfo.LCID);
+
+            var currencyName = regionInfo.CurrencyNativeName;
 
             var integerConvertedPrice = Convert.ToInt32(price);
-            var integerConvertedPriceToWords = integerConvertedPrice.ToWords();
+            var integerConvertedPriceToWords = integerConvertedPrice.ToWords(cultureInfo);
 
             return $"{integerConvertedPriceToWords} {currencyName}".Humanize(LetterCasing.Sentence);
         }
