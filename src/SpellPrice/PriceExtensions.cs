@@ -8,19 +8,9 @@ namespace SpellPrice
     {
         public static string PriceToWords(this decimal price, CultureInfo cultureInfo)
         {
-            if (cultureInfo == null)
-            {
-                throw new ArgumentNullException(nameof(cultureInfo));
-            }
+            var naturalPartPriceToWords = GetNaturalPartPrice(price, cultureInfo);
 
-            var regionInfo = new RegionInfo(cultureInfo.LCID);
-
-            string currencyName = GetCurrencyName(price, regionInfo);
-
-            var integerConvertedPrice = Convert.ToInt32(price);
-            var integerConvertedPriceToWords = integerConvertedPrice.ToWords(cultureInfo);
-
-            return $"{integerConvertedPriceToWords} {currencyName}".Humanize(LetterCasing.Sentence);
+            return $"{naturalPartPriceToWords}".Humanize(LetterCasing.Sentence);
         }
 
         private static string GetCurrencyName(decimal price, RegionInfo regionInfo)
@@ -32,6 +22,23 @@ namespace SpellPrice
             }
 
             return currencyName;
+        }
+
+        private static string GetNaturalPartPrice(this decimal price, CultureInfo cultureInfo)
+        {
+            if (cultureInfo == null)
+            {
+                throw new ArgumentNullException(nameof(cultureInfo));
+            }
+
+            var regionInfo = new RegionInfo(cultureInfo.LCID);
+
+            var naturalPartPrice = (int)Math.Truncate(price);
+            var naturalPartPriceToWords = naturalPartPrice.ToWords(cultureInfo);
+
+            var currencyName = GetCurrencyName(price, regionInfo);
+
+            return $"{naturalPartPriceToWords} {currencyName}";
         }
     }
 }
