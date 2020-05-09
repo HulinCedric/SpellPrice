@@ -15,16 +15,23 @@ namespace SpellPrice
 
             var regionInfo = new RegionInfo(cultureInfo.LCID);
 
+            string currencyName = GetCurrencyName(price, regionInfo);
+
+            var integerConvertedPrice = Convert.ToInt32(price);
+            var integerConvertedPriceToWords = integerConvertedPrice.ToWords(cultureInfo);
+
+            return $"{integerConvertedPriceToWords} {currencyName}".Humanize(LetterCasing.Sentence);
+        }
+
+        private static string GetCurrencyName(decimal price, RegionInfo regionInfo)
+        {
             var currencyName = regionInfo.CurrencyNativeName;
             if (price > 1m)
             {
                 currencyName = currencyName.Pluralize();
             }
 
-            var integerConvertedPrice = Convert.ToInt32(price);
-            var integerConvertedPriceToWords = integerConvertedPrice.ToWords(cultureInfo);
-
-            return $"{integerConvertedPriceToWords} {currencyName}".Humanize(LetterCasing.Sentence);
+            return currencyName;
         }
     }
 }
