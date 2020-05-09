@@ -11,7 +11,7 @@ namespace SpellPrice.Tests.enUS
         public void Over_One_PriceValue_Should_Give_Pluralize_CurrencyName(decimal price, string expectedSpelledPrice)
         {
             // Arrange
-            var cultureInfo = new CultureInfo("en-US");
+            var cultureInfo = GetCultureInfo();
 
             // Act
             var actualSpelledPrice = price.PriceToWords(cultureInfo);
@@ -26,7 +26,7 @@ namespace SpellPrice.Tests.enUS
         public void Singular_PriceValue_Should_Give_Singular_CurrencyName(decimal price, string expectedSpelledPrice)
         {
             // Arrange
-            var cultureInfo = new CultureInfo("en-US");
+            var cultureInfo = GetCultureInfo();
 
             // Act
             var actualSpelledPrice = price.PriceToWords(cultureInfo);
@@ -34,5 +34,8 @@ namespace SpellPrice.Tests.enUS
             // Assert
             Assert.Equal(expectedSpelledPrice, actualSpelledPrice);
         }
+
+        private CultureInfo GetCultureInfo()
+            => new CultureInfo("en-US");
     }
 }
