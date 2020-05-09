@@ -16,6 +16,10 @@ namespace SpellPrice
             var regionInfo = new RegionInfo(cultureInfo.LCID);
 
             var currencyName = regionInfo.CurrencyNativeName;
+            if (price > 1m)
+            {
+                currencyName = currencyName.Pluralize();
+            }
 
             var integerConvertedPrice = Convert.ToInt32(price);
             var integerConvertedPriceToWords = integerConvertedPrice.ToWords(cultureInfo);
