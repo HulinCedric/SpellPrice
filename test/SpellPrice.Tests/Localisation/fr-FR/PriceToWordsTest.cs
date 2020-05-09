@@ -21,7 +21,7 @@ namespace SpellPrice.Tests.frFR
         }
 
         [Theory]
-        [InlineData(0d, "Zéro euro")]
+        [InlineData(0d, "ZÃ©ro euro")]
         [InlineData(1d, "Un euro")]
         public void Singular_PriceValue_Should_Give_Singular_CurrencyName(decimal price, string expectedSpelledPrice)
         {
