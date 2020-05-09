@@ -17,7 +17,7 @@ namespace SpellPrice
 
         public string GetPriceToWords(decimal price)
         {
-            var naturalPartPrice = (int)Math.Truncate(price);
+            var naturalPartPrice = price.GetIntegerPart();
             var naturalPartPriceToWords = naturalPartPrice.ToWords(cultureInfo);
 
             var currencyName = GetCurrencyName(price, regionInfo);
