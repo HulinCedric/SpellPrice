@@ -4,12 +4,12 @@ using System.Globalization;
 
 namespace SpellPrice
 {
-    internal class NaturalPartPrice
+    internal class IntegerPartPrice
     {
         private readonly CultureInfo cultureInfo;
         private readonly RegionInfo regionInfo;
 
-        public NaturalPartPrice(CultureInfo cultureInfo)
+        public IntegerPartPrice(CultureInfo cultureInfo)
         {
             this.cultureInfo = cultureInfo ?? throw new ArgumentNullException(nameof(cultureInfo));
             this.regionInfo = new RegionInfo(cultureInfo.LCID);
@@ -17,18 +17,18 @@ namespace SpellPrice
 
         public string GetPriceToWords(Price price)
         {
-            var naturalPartPrice = price.IntegerPartValue;
-            var naturalPartPriceToWords = naturalPartPrice.ToWords(cultureInfo);
+            var integerPartPrice = price.IntegerPartValue;
+            var integerPartPriceToWords = integerPartPrice.ToWords(cultureInfo);
 
-            var currencyName = GetCurrencyName(naturalPartPrice, regionInfo);
+            var currencyName = GetCurrencyName(integerPartPrice, regionInfo);
 
-            return $"{naturalPartPriceToWords} {currencyName}";
+            return $"{integerPartPriceToWords} {currencyName}";
         }
 
-        private static string GetCurrencyName(int naturalPartPrice, RegionInfo regionInfo)
+        private static string GetCurrencyName(int integerPartPrice, RegionInfo regionInfo)
         {
             var currencyName = regionInfo.CurrencyNativeName;
-            if (naturalPartPrice > 1.0m)
+            if (integerPartPrice > 1.0m)
             {
                 currencyName = currencyName.Pluralize();
             }
