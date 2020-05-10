@@ -1,6 +1,6 @@
+using Humanizer;
 using System;
 using System.Globalization;
-using Humanizer;
 
 namespace SpellPrice
 {
