@@ -8,7 +8,7 @@ namespace SpellPrice
         internal static int GetIntegerPart(this decimal value)
             => (int)Math.Truncate(value);
 
-        internal static int GetFractionnalPart(this decimal value)
+        internal static int GetFractionalPart(this decimal value)
         {
             var decimalSeparatorSplitValues = value.ToString(CultureInfo.InvariantCulture).Split('.');
             return decimalSeparatorSplitValues.Length == 2 ?

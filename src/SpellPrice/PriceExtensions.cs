@@ -13,8 +13,8 @@ namespace SpellPrice
 
             if (price.FractionalPartValue != 0)
             {
-                var fractionnalPartPriceToWords = new FractionnalPartPrice(cultureInfo).GetPriceToWords(price);
-                priceToWords = $"{naturalPartPriceToWords} et {fractionnalPartPriceToWords}";
+                var fractionalPartPriceToWords = new FractionalPartPrice(cultureInfo).GetPriceToWords(price);
+                priceToWords = $"{naturalPartPriceToWords} et {fractionalPartPriceToWords}";
             }
             else
             {

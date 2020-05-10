@@ -4,23 +4,23 @@ using System.Globalization;
 
 namespace SpellPrice
 {
-    internal class FractionnalPartPrice
+    internal class FractionalPartPrice
     {
         private readonly CultureInfo cultureInfo;
 
-        public FractionnalPartPrice(CultureInfo cultureInfo)
+        public FractionalPartPrice(CultureInfo cultureInfo)
         {
             this.cultureInfo = cultureInfo ?? throw new ArgumentNullException(nameof(cultureInfo));
         }
 
         public string GetPriceToWords(Price price)
         {
-            var fractionnalPartPrice = price.FractionalPartValue;
-            var fractionnalPartPriceToWords = fractionnalPartPrice.ToWords(cultureInfo);
+            var fractionalPartPrice = price.FractionalPartValue;
+            var fractionalPartPriceToWords = fractionalPartPrice.ToWords(cultureInfo);
 
             var currencyCentName = "centime";
 
-            return $"{fractionnalPartPriceToWords} {currencyCentName}";
+            return $"{fractionalPartPriceToWords} {currencyCentName}";
         }
     }
 }

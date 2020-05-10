@@ -6,7 +6,7 @@ namespace SpellPrice
             => PriceValue = priceValue;
 
         public int FractionalPartValue
-            => PriceValue.GetFractionnalPart();
+            => PriceValue.GetFractionalPart();
 
         public int IntegerPartValue
             => PriceValue.GetIntegerPart();
