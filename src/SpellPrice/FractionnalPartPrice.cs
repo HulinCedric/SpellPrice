@@ -13,9 +13,9 @@ namespace SpellPrice
             this.cultureInfo = cultureInfo ?? throw new ArgumentNullException(nameof(cultureInfo));
         }
 
-        public string GetPriceToWords(decimal price)
+        public string GetPriceToWords(Price price)
         {
-            var fractionnalPartPrice = price.GetFractionnalPart();
+            var fractionnalPartPrice = price.FractionalPartValue;
             var fractionnalPartPriceToWords = fractionnalPartPrice.ToWords(cultureInfo);
 
             var currencyCentName = "centime";

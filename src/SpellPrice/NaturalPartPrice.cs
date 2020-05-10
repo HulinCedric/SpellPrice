@@ -15,9 +15,9 @@ namespace SpellPrice
             this.regionInfo = new RegionInfo(cultureInfo.LCID);
         }
 
-        public string GetPriceToWords(decimal price)
+        public string GetPriceToWords(Price price)
         {
-            var naturalPartPrice = price.GetIntegerPart();
+            var naturalPartPrice = price.IntegerPartValue;
             var naturalPartPriceToWords = naturalPartPrice.ToWords(cultureInfo);
 
             var currencyName = GetCurrencyName(naturalPartPrice, regionInfo);

@@ -5,12 +5,13 @@ namespace SpellPrice
 {
     public static class PriceExtensions
     {
-        public static string PriceToWords(this decimal price, CultureInfo cultureInfo)
+        public static string PriceToWords(this decimal priceValue, CultureInfo cultureInfo)
         {
             var priceToWords = string.Empty;
+            var price = new Price(priceValue);
             var naturalPartPriceToWords = new NaturalPartPrice(cultureInfo).GetPriceToWords(price);
 
-            if (price.GetFractionnalPart() != 0)
+            if (price.FractionalPartValue != 0)
             {
                 var fractionnalPartPriceToWords = new FractionnalPartPrice(cultureInfo).GetPriceToWords(price);
                 priceToWords = $"{naturalPartPriceToWords} et {fractionnalPartPriceToWords}";
