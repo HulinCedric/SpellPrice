@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 namespace SpellPrice
 {
@@ -9,7 +10,7 @@ namespace SpellPrice
 
         internal static int GetFractionnalPart(this decimal value)
         {
-            var decimalSeparatorSplitValues = value.ToString().Split('.');
+            var decimalSeparatorSplitValues = value.ToString(CultureInfo.InvariantCulture).Split('.');
             return decimalSeparatorSplitValues.Length == 2 ?
             int.Parse(decimalSeparatorSplitValues[1]) :
             0;
