@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="humanizer.core" Version="2.11.10" />
+    <PackageReference Include="humanizer.core" Version="2.13.14" />
   </ItemGroup>
   
   <ItemGroup>
